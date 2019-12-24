@@ -90,48 +90,47 @@ var game = {
       game.unanswered++;
       game.incorrectAnswers++;
       clearInterval(game.timeRemaining);
-      result = setTimeout(game.userGuess, 1000);
+      result = setTimeout(game.userGuess, 3000);
       $("#question").html("<h4>Time Expired! The Answer Was " + currentUnanswered + "</h4>" + "<img src='" + currentImage + "'>");
-    }
-    // if every question has been answered then show game results
-    else if (game.currentQuestion === Object.keys(game.questions).length) {
-      $("#question").html(
-        "<h3>Thanks For Playing</h3>" +
-          "<div>Correct: " +
-          game.correctAnswers +
-          "</div>" +
-          "<div>Incorrect: " +
-          game.incorrectAnswers +
-          "</div>" +
-          "<div>Unanswered: " +
-          game.unanswered +
-          "</div>"
-      );
-      start = setTimeout(game.startGame, 1000);
     }
   },
   // checks the users guess
   checkGuess: function() {
     var currentAnswer = Object.values(game.answer)[game.currentQuestion];
     var currentImage = Object.values(game.images)[game.currentQuestion];
+    clearInterval(game.clockRunning);
     if ($(this).text() === currentAnswer) {
       game.correctAnswers++;
-      clearInterval(game.clockRunning);
-      result = setTimeout(game.userGuess, 1000);
       $("#question").html("<h4>That Is Correct</h4>" + "<img src='" + currentImage + "'>");
     } else {
       game.incorrectAnswers++;
-      clearInterval(game.clockRunning);
-      result = setTimeout(game.userGuess, 1000);
       $("#question").html("<h4>That Is Incorrect! " + currentAnswer + "</h4>" + "<img src='" + currentImage + "'>");
     }
+    result = setTimeout(game.userGuess, 3000);
   },
   // removes previous question and asks the next
   userGuess: function() {
     game.currentQuestion++;
     $(".answer").remove();
     $("#question").empty();
-    game.askQuestion();
+    // if every question has been asked then show game results
+    if (game.currentQuestion === Object.keys(game.questions).length) {
+      $("#question").html(
+        "<h3>Thanks For Playing</h3>" +
+          "<div>Correct: <strong>" +
+          game.correctAnswers +
+          "</strong></div>" +
+          "<div>Incorrect: <strong>" +
+          game.incorrectAnswers +
+          "</strong></div>" +
+          "<div>Unanswered: <strong>" +
+          game.unanswered +
+          "</strong></div>"
+      );
+      start = setTimeout(game.startGame, 3000);
+    } else {
+      game.askQuestion();
+    }
   }
 };
 
