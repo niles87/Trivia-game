@@ -81,6 +81,8 @@ var game = {
   },
   // checks the status of the timer
   clockRunning: function() {
+    var currentUnanswered = Object.values(game.answer)[game.currentQuestion];
+    var currentImage = Object.values(game.images)[game.currentQuestion];
     if (game.timer > -1 && game.currentQuestion < Object.keys(game.questions).length) {
       $("#timer").text(game.timer);
       game.timer--;
@@ -90,10 +92,9 @@ var game = {
       game.unanswered++;
       game.incorrectAnswers++;
       clearInterval(game.timeRemaining);
-      result = setTimeout(game.guess, 1000);
-      $("#question").html("<h4>Time Expired! The Answer Was " + Object.values(game.answer)[game.currentQuestion] + "</h4>");
+      result = setTimeout(game.userGuess, 1000);
+      $("#question").html("<h4>Time Expired! The Answer Was " + currentUnanswered + "</h4>" + "<img src='" + currentImage + "'>");
       console.log("Current unanswered amount " + game.unanswered);
-      game.userGuess();
     }
     // if every question has been answered then show game results
     else if (game.currentQuestion === Object.keys(game.questions).length) {
