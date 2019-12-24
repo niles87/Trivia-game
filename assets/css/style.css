@@ -3,7 +3,19 @@ body {
   background-size: cover;
 }
 .container {
-  background-color: #ffffff;
-  margin-top: 7.5%;
+  background-color: #f8f8f8;
+  margin-top: 5%;
   padding-bottom: 5%;
+}
+#title {
+  font-family: "Press Start 2P", cursive;
+}
+h3 {
+  font-family: "Russo One", sans-serif;
+}
+h4 {
+  font-family: "Russo One", sans-serif;
+}
+button {
+  margin: 5px;
 }
