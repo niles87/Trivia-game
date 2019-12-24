@@ -49,7 +49,6 @@ var game = {
   },
   // starts game
   startGame: function() {
-    console.log("game started");
     clearTimeout(start);
     clearInterval(game.timeRemaining);
     game.timeRemaining = "";
@@ -65,7 +64,6 @@ var game = {
   },
   // asks a question
   askQuestion: function() {
-    console.log("asking question");
     game.timer = 10;
     $("#timer").text(game.timer);
     if (!game.timeRunning) {
@@ -94,11 +92,9 @@ var game = {
       clearInterval(game.timeRemaining);
       result = setTimeout(game.userGuess, 1000);
       $("#question").html("<h4>Time Expired! The Answer Was " + currentUnanswered + "</h4>" + "<img src='" + currentImage + "'>");
-      console.log("Current unanswered amount " + game.unanswered);
     }
     // if every question has been answered then show game results
     else if (game.currentQuestion === Object.keys(game.questions).length) {
-      console.log("game over");
       $("#question").html(
         "<h3>Thanks For Playing</h3>" +
           "<div>Correct: " +
@@ -111,25 +107,20 @@ var game = {
           game.unanswered +
           "</div>"
       );
-      console.log("start game function running below");
       start = setTimeout(game.startGame, 1000);
     }
   },
   // checks the users guess
   checkGuess: function() {
-    console.log("Im checking the guess");
-    // var guess = game.getButtonValue($("button"));
     var currentAnswer = Object.values(game.answer)[game.currentQuestion];
     var currentImage = Object.values(game.images)[game.currentQuestion];
     if ($(this).text() === currentAnswer) {
       game.correctAnswers++;
-      console.log("This is the current number of correct answers " + game.correctAnswers);
       clearInterval(game.clockRunning);
       result = setTimeout(game.userGuess, 1000);
       $("#question").html("<h4>That Is Correct</h4>" + "<img src='" + currentImage + "'>");
     } else {
       game.incorrectAnswers++;
-      console.log("Current incorrect answers " + game.incorrectAnswers);
       clearInterval(game.clockRunning);
       result = setTimeout(game.userGuess, 1000);
       $("#question").html("<h4>That Is Incorrect! " + currentAnswer + "</h4>" + "<img src='" + currentImage + "'>");
@@ -137,7 +128,6 @@ var game = {
   },
   // removes previous question and asks the next
   userGuess: function() {
-    console.log("asking the next question");
     game.currentQuestion++;
     $(".answer").remove();
     $("#question").empty();
