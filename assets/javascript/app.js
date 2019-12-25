@@ -131,10 +131,44 @@ var game = {
     } else {
       game.askQuestion();
     }
+  },
+  getRandomColor: function() {
+    var choices = "0123456789ABCDEF";
+    var color = "#";
+    for (var c = 0; c < 6; c++) {
+      color += choices[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  },
+  setRandomColor: function() {
+    $(".char1").css({ color: game.getRandomColor(), "text-decoration": "underline" });
+    $(".char2").css({ color: game.getRandomColor(), "text-decoration": "underline" });
+    $(".char3").css({ color: game.getRandomColor(), "text-decoration": "underline" });
+    $(".char4").css({ color: game.getRandomColor(), "text-decoration": "underline" });
+    $(".char5").css({ color: game.getRandomColor(), "text-decoration": "underline" });
+    $(".char7").css({ color: game.getRandomColor(), "text-decoration": "underline" });
+    $(".char8").css({ color: game.getRandomColor(), "text-decoration": "underline" });
+    $(".char9").css({ color: game.getRandomColor(), "text-decoration": "underline" });
+    $(".char10").css({ color: game.getRandomColor(), "text-decoration": "underline" });
+    $(".char12").css({ color: game.getRandomColor(), "text-decoration": "underline" });
+    $(".char13").css({ color: game.getRandomColor(), "text-decoration": "underline" });
+    $(".char14").css({ color: game.getRandomColor(), "text-decoration": "underline" });
+    $(".char15").css({ color: game.getRandomColor(), "text-decoration": "underline" });
+    $(".char16").css({ color: game.getRandomColor(), "text-decoration": "underline" });
+    $(".char17").css({ color: game.getRandomColor(), "text-decoration": "underline" });
+  },
+  refreshColor: function() {
+    var timeInSeconds = 0.3;
+
+    game.setRandomColor();
+
+    setTimeout(game.refreshColor, timeInSeconds * 1000);
   }
 };
 
 $(document).ready(function() {
+  $("#title").lettering();
+  game.refreshColor();
   $("#time-remaining").hide();
   $("#start").on("click", game.startGame);
   $(document).on("click", ".answer", game.checkGuess);
