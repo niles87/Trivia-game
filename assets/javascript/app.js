@@ -65,6 +65,7 @@ var game = {
   // asks a question
   askQuestion: function() {
     game.timer = 10;
+    $("#time-remaining").show();
     $("#timer").text(game.timer);
     if (!game.timeRunning) {
       clearInterval(game.timeRemaining);
@@ -90,15 +91,16 @@ var game = {
       game.unanswered++;
       game.incorrectAnswers++;
       clearInterval(game.timeRemaining);
+      $("#time-remaining").hide();
       result = setTimeout(game.userGuess, 3000);
       $("#question").html("<h4>Time Expired! The Answer Was " + currentUnanswered + "</h4>" + "<img src='" + currentImage + "'>");
     }
   },
   // checks the users guess
   checkGuess: function() {
+    $("#time-remaining").hide();
     var currentAnswer = Object.values(game.answer)[game.currentQuestion];
     var currentImage = Object.values(game.images)[game.currentQuestion];
-    clearInterval(game.clockRunning);
     if ($(this).text() === currentAnswer) {
       game.correctAnswers++;
       $("#question").html("<h4>That Is Correct</h4>" + "<img src='" + currentImage + "'>");
@@ -127,7 +129,7 @@ var game = {
           game.unanswered +
           "</strong></div>"
       );
-      start = setTimeout(game.startGame, 3000);
+      start = setTimeout(game.startGame, 5000);
     } else {
       game.askQuestion();
     }
