@@ -22,3 +22,18 @@ button {
 div {
   font-family: "Roboto", sans-serif;
 }
+@media screen and (max-width: 800px) {
+  h4 {
+    font-size: 25px;
+  }
+}
+@media screen and (max-width: 625px) {
+  h4 {
+    font-size: 20px;
+  }
+}
+@media screen and (max-width: 480px) {
+  h4 {
+    font-size: 15px;
+  }
+}
