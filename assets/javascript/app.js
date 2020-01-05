@@ -8,14 +8,15 @@ var game = {
   timeRemaining: "",
 
   questions: {
-    one: "What video game was released in 1996 exclusively for PlayStation and starred a marsupial that is found in Australia and Tasmania?",
+    one:
+      "What video game was released in 1996 exclusively for PlayStation and starred a marsupial that is found in Australia and Tasmania?",
     two: "What is the highest selling video game console of all time?",
     three: "What video game from 1997 is considered the best selling for the PlayStation console?",
     four: "What video game was the most sold for the Super Nintendo?",
     five: "What computer game became the best selling piece of software passing Windows 95?",
     six: "What was SEGA’s first home console?",
     seven: "What was Mario’s first profession?",
-    eight: "What was the first console that played 16-bit video games?"
+    eight: "What was the first console that played 16-bit video games?",
   },
   possibleAnswers: {
     one: ["Sonic the Hedgehog", "Crash Bandicoot", "Banjo-Kazooie", "Donkey Kong"],
@@ -25,7 +26,7 @@ var game = {
     five: ["DOOM", "Duke Nukem 3D", "StarCraft", "Diablo"],
     six: ["Dreamcast", "Sega CD", "SG-1000", "Genesis"],
     seven: ["Carpenter", "Plumber", "Construction Worker", "Boxing Referee"],
-    eight: ["SEGA Genesis", "Super Nintendo", "Atari", "TurboGrafx-16 Entertainment SuperSystem"]
+    eight: ["SEGA Genesis", "Super Nintendo", "Atari", "TurboGrafx-16 Entertainment SuperSystem"],
   },
   answer: {
     one: "Crash Bandicoot",
@@ -35,7 +36,7 @@ var game = {
     five: "DOOM",
     six: "SG-1000",
     seven: "Carpenter",
-    eight: "TurboGrafx-16 Entertainment SuperSystem"
+    eight: "TurboGrafx-16 Entertainment SuperSystem",
   },
   images: {
     one: "assets/images/crash_bandicoot.jpeg",
@@ -45,7 +46,7 @@ var game = {
     five: "assets/images/doom.jpeg",
     six: "assets/images/sg-1000.jpeg",
     seven: "assets/images/mario.jpeg",
-    eight: "assets/images/turbografx.jpeg"
+    eight: "assets/images/turbografx.jpeg",
   },
   // starts game
   startGame: function() {
@@ -75,7 +76,9 @@ var game = {
     $("#question").text(question);
     var answers = Object.values(game.possibleAnswers)[game.currentQuestion];
     $.each(answers, function(index, key) {
-      $("#answers").append($("<button class='answer' data-value='" + key + "'>" + key + "</button>"));
+      $("#answers").append(
+        $("<button class='answer' data-value='" + key + "'>" + key + "</button>")
+      );
     });
   },
   // checks the status of the timer
@@ -93,7 +96,14 @@ var game = {
       clearInterval(game.timeRemaining);
       $("#time-remaining").hide();
       result = setTimeout(game.userGuess, 3000);
-      $("#question").html("<h4>Time Expired! The Answer Was " + currentUnanswered + "</h4>" + "<img src='" + currentImage + "'>");
+      $("#question").html(
+        "<h4>Time Expired! The Answer Was " +
+          currentUnanswered +
+          "</h4>" +
+          "<img src='" +
+          currentImage +
+          "'>"
+      );
     }
   },
   // checks the users guess
@@ -106,7 +116,9 @@ var game = {
       $("#question").html("<h4>That Is Correct</h4>" + "<img src='" + currentImage + "'>");
     } else {
       game.incorrectAnswers++;
-      $("#question").html("<h4>That Is Incorrect! " + currentAnswer + "</h4>" + "<img src='" + currentImage + "'>");
+      $("#question").html(
+        "<h4>That Is Incorrect! " + currentAnswer + "</h4>" + "<img src='" + currentImage + "'>"
+      );
     }
     result = setTimeout(game.userGuess, 3000);
   },
@@ -134,42 +146,45 @@ var game = {
       game.askQuestion();
     }
   },
-  getRandomColor: function() {
-    var choices = "0123456789ABCDEF";
-    var color = "#";
-    for (var c = 0; c < 6; c++) {
-      color += choices[Math.floor(Math.random() * 16)];
-    }
-    return color;
-  },
-  setRandomColor: function() {
-    $("#char1").css({ color: game.getRandomColor(), "text-decoration": "underline" });
-    $("#char2").css({ color: game.getRandomColor(), "text-decoration": "underline" });
-    $("#char3").css({ color: game.getRandomColor(), "text-decoration": "underline" });
-    $("#char4").css({ color: game.getRandomColor(), "text-decoration": "underline" });
-    $("#char5").css({ color: game.getRandomColor(), "text-decoration": "underline" });
-    $("#char6").css({ color: game.getRandomColor(), "text-decoration": "underline" });
-    $("#char7").css({ color: game.getRandomColor(), "text-decoration": "underline" });
-    $("#char8").css({ color: game.getRandomColor(), "text-decoration": "underline" });
-    $("#char9").css({ color: game.getRandomColor(), "text-decoration": "underline" });
-    $("#char10").css({ color: game.getRandomColor(), "text-decoration": "underline" });
-    $("#char11").css({ color: game.getRandomColor(), "text-decoration": "underline" });
-    $("#char12").css({ color: game.getRandomColor(), "text-decoration": "underline" });
-    $("#char13").css({ color: game.getRandomColor(), "text-decoration": "underline" });
-    $("#char14").css({ color: game.getRandomColor(), "text-decoration": "underline" });
-    $("#char15").css({ color: game.getRandomColor(), "text-decoration": "underline" });
-  },
-  refreshColor: function() {
-    var timeInSeconds = 0.3;
-
-    game.setRandomColor();
-
-    setTimeout(game.refreshColor, timeInSeconds * 1000);
-  }
 };
 
+// following three functions are for the title animation
+function getRandomColor() {
+  var choices = "0123456789ABCDEF";
+  var color = "#";
+  for (var c = 0; c < 6; c++) {
+    color += choices[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
+function setRandomColor() {
+  $("#char1").css({ color: getRandomColor(), "text-decoration": "underline" });
+  $("#char2").css({ color: getRandomColor(), "text-decoration": "underline" });
+  $("#char3").css({ color: getRandomColor(), "text-decoration": "underline" });
+  $("#char4").css({ color: getRandomColor(), "text-decoration": "underline" });
+  $("#char5").css({ color: getRandomColor(), "text-decoration": "underline" });
+  $("#char6").css({ color: getRandomColor(), "text-decoration": "underline" });
+  $("#char7").css({ color: getRandomColor(), "text-decoration": "underline" });
+  $("#char8").css({ color: getRandomColor(), "text-decoration": "underline" });
+  $("#char9").css({ color: getRandomColor(), "text-decoration": "underline" });
+  $("#char10").css({ color: getRandomColor(), "text-decoration": "underline" });
+  $("#char11").css({ color: getRandomColor(), "text-decoration": "underline" });
+  $("#char12").css({ color: getRandomColor(), "text-decoration": "underline" });
+  $("#char13").css({ color: getRandomColor(), "text-decoration": "underline" });
+  $("#char14").css({ color: getRandomColor(), "text-decoration": "underline" });
+  $("#char15").css({ color: getRandomColor(), "text-decoration": "underline" });
+}
+function refreshColor() {
+  var timeInSeconds = 0.3;
+
+  setRandomColor();
+
+  setTimeout(refreshColor, timeInSeconds * 1000);
+}
+
 $(document).ready(function() {
-  game.refreshColor();
+  refreshColor();
   $("#time-remaining").hide();
   $("#start").on("click", game.startGame);
   $(document).on("click", ".answer", game.checkGuess);
