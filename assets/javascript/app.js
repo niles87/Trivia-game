@@ -79,6 +79,7 @@ var game = {
       $("#answers").append(
         $("<button class='answer' data-value='" + key + "'>" + key + "</button>")
       );
+      $("#answers").show();
     });
   },
   // checks the status of the timer
@@ -104,6 +105,7 @@ var game = {
           currentImage +
           "'>"
       );
+      $("#answers").hide();
     }
   },
   // checks the users guess
@@ -120,6 +122,7 @@ var game = {
         "<h4>That Is Incorrect! " + currentAnswer + "</h4>" + "<img src='" + currentImage + "'>"
       );
     }
+    $("#answers").hide();
     result = setTimeout(game.userGuess, 3000);
   },
   // removes previous question and asks the next
