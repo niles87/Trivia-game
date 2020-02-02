@@ -1,10 +1,14 @@
-# Trivia-game
+# <p align='center'>Trivia-game</p>
 
-## Overview
+#### <p align="center">Game Play</p>
+
+<p align="center"><img src='assets/images/trivia.gif'></p>
+
+## <p align="center">Overview</p>
 
 A web application that asks a series of questions. Each question uses a countdown timer to listen for a users guess. Jquery is used to update HTML document.
 
-## How To Play
+## <p align="center">How To Play</p>
 
 1. To start the game the user has to click the start button.
 2. The user will then answer the question that is asked by clicking on the answer button.
